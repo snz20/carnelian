@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 splits a large fasta file into n smaller ones
+Author: Sumaiya Nazeen
 '''
 import math
 import os
