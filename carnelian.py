@@ -957,7 +957,7 @@ def main(argv):
 	ncpus_arg = ArgClass('-n', dest='ncpus', default=1, help='Number of parallel processors to be used', type=int)
 	kmer_arg = ArgClass('-k', dest='kmer_length', default=8, help='length of k-mers used', type=int)
 	num_hash_arg = ArgClass('--num_hash', dest='num_hash', default=1, help='number of k-mer hashing functions to get features', type=int)
-	frag_length_arg = ArgClass('-l', dest='frag_length', default=16, help='length of fragments to be drawn from fasta', type=int)
+	frag_length_arg = ArgClass('-l', dest='frag_length', default=30, help='length of fragments to be drawn from fasta', type=int)
 	coverage_arg = ArgClass('-c', dest='coverage', default=1.0, help='number/fraction of times a position in a fragment should be covered by the k-mer', type=float)
 	hierarchical_arg = ArgClass('--hweight', help='intermediate organization of positions chosen in the k-mer in row_weight; should be a multiple of row_weight and a divisor of k-mer length if set', type=int, default=-1)
 	row_weight_arg = ArgClass('--rweight', help='the number of positions that will be randomly chosen in the contiguous k-mer; k-mer length should be a multiple of row_weight', type=int, default=4)
