@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Generates LDPC hash function locations for k-mers
+Generates LDPC hash function locations for k-mers 
+Author: Yun William Yu
 """
 
 import numpy as np
