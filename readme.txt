@@ -1,6 +1,6 @@
 This code is associated with the following manuscript:
 "Carnelian: alignment-free functional binning and abundance estimation of metagenomic reads"
-Sumaiya Nazeen and Bonnie Berger
+Sumaiya Nazeen and Bonnie Berger 
 
 Upon publication, further information can be found at http://carnelian.csail.mit.edu/
 
@@ -24,12 +24,12 @@ util/
     drawfrag.c: draw fragments from fasta records.
     fasta2skm.c: construct feature (spaced k-mer profile), and convert to VW input format.
     ldpc.py: generate LSH function using LDPC code.
-    sequtil.py: split a large fasta file into smaller ones and merges after processing.
+    sequtil.py: split a large fasta file into smaller ones and merge after processing.
     kseq.h: parse FASTA files
     2. Install and test:
     bash SETUP.sh
 
-3. Usage: carnelian.py assumes it lives in the current directory structure, but can be symlinked elsewhere.
+3. Usage:
 
 Modes:
     (default --optional-arguments such as k-mer length, fragment size,
@@ -87,9 +87,9 @@ Modes:
 
     7) ./carnelian.py simulate [--optional-arguments] test_dir train_dir out_dir [-h]
 
-        Runs a full pipeline training on data in train_dir, testing on
-        data in test_dir, and outputting everything under out_dir in the
-        following directory structure:
+        Runs a full pipeline for performance evaluation starting from training on data 
+        in train_dir, testing on data in test_dir, and outputting fragments, model and 
+        predictions under out_dir in the following directory structure:
 
         1frag/
             simulated test data (drawn fragments) are saved here.
