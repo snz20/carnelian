@@ -5,10 +5,12 @@ Sumaiya Nazeen and Bonnie Berger
 Upon publication, further information can be found at http://carnelian.csail.mit.edu/
 
 0. Requirments
-    Vowpal Wabbit >= 8.3.1
+    Vowpal Wabbit >= 8.3.0
     scikit-learn
     R 3.3.2
     Python 2.7.13
+    BioPython 1.70
+    EMBOSS 6.6.0
 
     This code has been tested with GCC 6.3.0 on Ubuntu 17.04, running
     under Bash 4.4.7(1) on a server with Intel Xeon E5-2695 v2 x86_64 2.40 GHz 
