@@ -21,7 +21,7 @@ Upon publication, further information can be found at http://carnelian.csail.mit
 
 1. Directory structure
 data/: EC-2192-DB dataset with gold standard EC labels.
-scripts/: R script for abundance estimation from raw read counts in functional bins.
+scripts/: R scripts for abundance estimation and analysis from read counts in functional bins.
 util/
     ext/: external libararies.
     test/: test drawfrag.c and fasta2skm.c
@@ -105,6 +105,14 @@ Modes:
             classifier will be saved here.
         3predict/
             fragment classifications are saved here.
+
+    To run abundance analysis on effective counts using limma, voom, and edgeR packages in R,
+    use the following script abundance_analysis.R in scripts directory:
+
+    Rscript abundance_analysis.R effective_counts_file sampleinfo_file ref_group adj_pval_cutoff logFC_cutoff out_dir
+
+    Before running the script make sure the following packages are installed and out_dir exists:
+        tools, limma, Glimma, edgeR, RColorBrewer, gplots, ggplot2, ggrepel
 
 Contact
     Sumaiya Nazeen, nazeen@mit.edu
