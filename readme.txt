@@ -14,7 +14,7 @@ Upon publication, further information can be found at http://carnelian.csail.mit
 
     This code has been tested with GCC 6.3.0 on Ubuntu 17.04, running
     under Bash 4.4.7(1) on a server with Intel Xeon E5-2695 v2 x86_64 2.40 GHz 
-    processor with 320 GB RAM.
+    processor and 320 GB RAM.
     
     Using the EC-2192-DB dataset as gold standard, Carnelian can be comfortably
     run on a machine with 16GB RAM.
