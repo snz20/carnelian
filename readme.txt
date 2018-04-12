@@ -49,9 +49,9 @@ Modes:
         Looks for a fasta file in train_dir with matching label file.
         For each batch of training, randomly draw fragments and generate
         feature vectors using Opal LDPC hashes, and trains Vowpal_Wabbit
-        One-Against-All classifier against all batches sequentially. Default
-        mode trains SVM classifiers where as precise mode trains logistic
-        regression models.
+        One-Against-All classifier against all batches sequentially. To train 
+        classifiers in precise mode, use "--precise" option which will make
+        the learned model store probabilities.
 
         Outputs the generated classifier model into model_dir.
 
@@ -68,15 +68,18 @@ Modes:
     4) ./carnelian.py predict [--optional-arguments] model_dir test_dir predict_dir [-h]
 
         Looks for a classifier model in model_dir, and a fasta file in
-        test_dir containing reads/fragments.
-
+        test_dir containing reads/fragments. To make predictions with probabilities,
+        run in precise mode using "--precise" option and specify probability cutoff
+        using "--cutoff <X>" option.
+      
         Outputs the predictions in predict_dir as a fasta file with
         corresponding a corresponding label file.
 
     5) ./carnelian.py eval reference_file predicted_labels [-h]
     
         Evaluation of prediction accuracy in terms of micro and macro averaged
-        precision, sensitivity, and F1-score.
+        precision, sensitivity, and F1-score. If run in "precise" mode, it will
+        assume predicted_labels file to have two tab-separated columns: <readID, predLabel>
 
     6) ./carnelian.py abundance in_dir out_dir mapping_file gs_file [-h]
 
