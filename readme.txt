@@ -58,11 +58,11 @@ Modes:
 
         Outputs the generated classifier model into model_dir.
 
-    3) ./carnelian.py retrain [--optional-arguments] old_model_dir new_model_dir new_examples_dir [-h]
+    3) ./carnelian.py retrain [--optional-arguments] old_model_dir new_model_dir new_exmpls_dir [-h]
 
         Looks for a vowpal-wabbit model with patterns and dictionary file
         in the old_model_dir and a fasta file with matching labels in the
-        new_examples_dir. Starting with the old model, it updates the existing
+        new_exmpls_dir. Starting with the old model, it updates the existing
         training model and merges new labels with old dictionary using the old
         LDPC patterns. Note that a model trained in default mode must be updated
         in default mode. Same is true for precise mode.
