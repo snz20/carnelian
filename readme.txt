@@ -18,6 +18,7 @@ Upon publication, further information can be found at http://carnelian.csail.mit
 
 1. Directory structure
 data/: EC-2192-DB dataset with gold standard EC labels.
+scripts/: R script for abundance estimation from raw read counts in functional bins.
 util/
     ext/: external libararies.
     test/: test drawfrag.c and fasta2skm.c
