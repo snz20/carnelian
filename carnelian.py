@@ -1046,6 +1046,7 @@ determine how good a model is under particular parameter ranges''', formatter_cl
 	parser_simulate.add_argument('train_dir', help='Input directory for train data')
 	parser_simulate.add_argument('out_dir', help='Output directory for all steps')
 	parser_simulate.add_argument('--do-not-fragment', help='If set, will use test_dir fasta files as is without fragmenting', action='store_true')
+	parser_simulate.add_argument('--precise', help='If set, will train model to output probabilities', action='store_true')
 	parser_simulate.add_argument(*frag_length_arg.args, **frag_length_arg.kwargs)
 	parser_simulate.add_argument(*coverage_arg.args, **coverage_arg.kwargs)
 	parser_simulate.add_argument(*kmer_arg.args, **kmer_arg.kwargs)
