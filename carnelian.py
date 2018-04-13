@@ -10,17 +10,19 @@ This is written by Sumaiya Nazeen <nazeen@mit.edu> and is based off of the
 python wrapper of Opal tool originally written by Yun William Yu.
 
 Carnelian uses an adapted version of the implementation of the metagenomic
-binning from the source code of K. Vervier, P. Mahe, M. Tournoud, J.-B.
-Veyrieras, and J.-P. Vert. Large-scale Machine Learning for Metagenomics
-Sequence Classification, Technical report HAL-01151453, May, 2015.
-This code is included in the util/ directory, with modifications to enable
-using Carnelian's (originally used in Opal framework) Gallagher code based
-hashes in util/ldpc.py.
+binning from the source code of Y. Luo, Y. W. Yu, J. Zeng, B. Berger, and 
+J. Peng. Metagenomic binning through low density hashing. 2017. 
+doi: https://doi.org/10.1101/133116
 
-The code from Verview, et al, requires the Genetic Data Analysis Library,
-which we have included a copy of under util/ext/ for ease of installation.
+Luo et al. use source code of of K. Vervier, P. Mahe, M. Tournoud, J.-B. Veyrieras, 
+and J.-P. Vert. Large-scale Machine Learning for Metagenomics Sequence Classification,
+Technical report HAL-01151453, May, 2015. This code is included in the util/ directory, 
+with modifications to enable using Carnelian's (originally used in Opal framework) 
+Gallagher code based hashes in util/ldpc.py. The code from Verview, et al, requires 
+the Genetic Data Analysis Library, which we have included a copy of under util/ext/ 
+for ease of installation.
 
-This pipeline depends on Python scikit-learn, numpy, pandas, and on Vowpal Wabbit.
+This pipeline depends on Python scikit-learn, numpy, pandas, BioPython, and on Vowpal Wabbit.
 Vowpal Wabbit must be properly installed in the system path. It also assumes a working
 R installation (version >= 3.3.2) to be available.
 '''
