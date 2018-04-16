@@ -30,8 +30,9 @@ util/
     ldpc.py: generate LSH function using LDPC code.
     sequtil.py: split a large fasta file into smaller ones and merge after processing.
     kseq.h: parse FASTA files
-    2. Install and test:
-    bash SETUP.sh
+    
+2. Install and test:
+   bash SETUP.sh
 
 3. Usage:
 
