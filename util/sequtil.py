@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-splits a large fasta file into n smaller ones
+utility functions for splitting fasta and label files into n smaller ones as well as merging fastas
+author: Sumaiya Nazeen
 '''
 import math
 import os
