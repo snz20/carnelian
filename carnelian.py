@@ -2,9 +2,9 @@
 
 '''
 Runs the Carnelian framework for functional binning of metagenomic sequences
-using LDPC k-mer hash based features. Based of the paper "Improved functional
-binning of metagenomic sequences in clinical studies" by Sumaiya Nazeen and
-Bonnie Berger.
+using LDPC k-mer hash based features. Based of the paper "Carnelian: alignment-free
+functional binning and abundance estimation of metagenomic reads" by Sumaiya Nazeen
+and Bonnie Berger.
 
 This is written by Sumaiya Nazeen <nazeen@mit.edu> and is based off of the
 python wrapper of Opal tool originally written by Yun William Yu.
