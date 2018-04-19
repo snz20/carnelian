@@ -65,7 +65,7 @@ def split_labels(filename, dest_dir, splits):
 		new_st = old_st + old_chunk
 		with open(outfile, 'w') as handle:
 			handle.writelines('\n'.join(lines[new_st:new_st+splits[i]])+'\n')
-			handle.close()
+			
 		old_st = new_st
 		old_chunk = splits[i]
 
