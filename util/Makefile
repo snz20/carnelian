@@ -23,4 +23,5 @@ fasta2sklearn: fasta2sklearn.o
 	$(CC) -o $@ fasta2sklearn.o -lz -L${GDLDIR}/lib -lgdl -lm -static -fPIC
 
 clean :
-rm $(OBJS) drawfrag fasta2vw fasta2skm fasta2sklearn
+	rm $(OBJS) drawfrag fasta2vw fasta2skm fasta2sklearn
+
