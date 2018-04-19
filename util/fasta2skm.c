@@ -168,7 +168,7 @@ help (void)
 	printf ("\t (if not specified, results printed on standard output)\n");
 	return GDL_SUCCESS;
 }
-
+// We will not use it since we generate all 6 possible ORFs during translation. This is used for taxonomic binning only.
 gdl_string * reverse_transcribe(gdl_string * s){
         // initialize result
         gdl_string * res;
@@ -269,6 +269,7 @@ main (int argc, char *argv[])
 		f = gzopen(INPUT, "r");
 		seq = kseq_init(f);
 		// open taxid file
+		nlabels = 1; //newly added
 		if(taxid_flag){
 		 	taxid_stream  = gdl_fileopen (TAXID, "r");
 			// initialize dictionary hash table (taxid to VW class index)
@@ -289,6 +290,7 @@ main (int argc, char *argv[])
 						label_tx = GDL_CALLOC (size_t, 1);
 						*label_tx = (size_t) (label_write);
 						gdl_hashtable_add(taxid_to_label, taxid_name, label_tx, 1);
+						nlabels++;
 					}
 				}
 				fclose(dico_table);
@@ -364,7 +366,7 @@ main (int argc, char *argv[])
   		// process each sequence //
   		//----------------------//
 		cptr = 0;
-		nlabels = 1;
+		//nlabels = 1; we added initialization before to accomodate the existing hashes.
 		while (kseq_read(seq) >= 0)
 		{
 			// log message //
