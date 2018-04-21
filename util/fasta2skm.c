@@ -214,10 +214,11 @@ main (int argc, char *argv[])
 		gzFile f, dico_table;
 		kseq_t *seq;
 		FILE * stream = 0;
-		size_t i, j, row, l, n, kmer_size, n_kmer_sizes, cptr, nlabels, tx_write, label_write;
+		size_t i, j, row, l, n, kmer_size, n_kmer_sizes, cptr, nlabels, label_write;
 		size_t * label_tx, *kmer_sizes;
 		gdl_hashtable *taxid_to_label = 0;
 		char taxid_name[20];
+		char tx_write[20];
 		FILE * taxid_stream  = 0;
 		gdl_string *taxid = NULL;		
 
@@ -281,8 +282,8 @@ main (int argc, char *argv[])
 				while(!feof(dico_table))
 				{
 					// extract (taxid / class) pair
-					fscanf(dico_table,"%lu\t%lu",&tx_write,&label_write);
-					sprintf(taxid_name,"%lu",tx_write);
+					fscanf(dico_table,"%s\t%lu",tx_write,&label_write);
+					sprintf(taxid_name,"%s",tx_write);
 					//sprintf(label_name,"%lu",label_write);
 					// add to hash hash table (sanity check : check it does not exist already)
 					if((label_tx = (size_t*) gdl_hashtable_lookup (taxid_to_label, taxid_name)) == 0)
