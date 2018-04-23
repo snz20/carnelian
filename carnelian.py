@@ -1091,7 +1091,10 @@ determine how good a model is under particular parameter ranges''', formatter_cl
 
 		print("Evaluation reference file: " + rf)
 		sys.stdout.flush()
-		evaluatePreds(rf, pf)
+		if args.precise:
+			evaluatePredsPrecise(rf, pf)
+		else:
+			evaluatePreds(rf, pf)
 		print("Total full sim wall clock runtime (sec): {}".format((datetime.now() - st_time).total_seconds()))
 
 	elif mode == 'translate':
