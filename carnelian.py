@@ -1060,6 +1060,7 @@ determine how good a model is under particular parameter ranges''', formatter_cl
 	parser_simulate.add_argument(*bits_arg.args, **bits_arg.kwargs)
 	parser_simulate.add_argument(*lambda1_arg.args, **lambda1_arg.kwargs)
 	parser_simulate.add_argument(*lambda2_arg.args, **lambda2_arg.kwargs)
+	parser_simulate.add_argument(*cutoff_arg.args, **cutoff_arg.kwargs)
 
 	args=parser.parse_args(argv)
 	print(args)
