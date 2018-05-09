@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+'''
+utility functions for reducing a fasta file using simpler amino acid alphabet
+author: Sumaiya Nazeen
+usage:
+python reduce.py infile outfile alphabet
+alph can be any of the following set = {Murphy15, Murphy10, Murphy8, Murphy4, PC5, HPModel}
+'''
 from Bio.Seq import Seq
 from Bio import Alphabet
 from Bio.Alphabet import Reduced
