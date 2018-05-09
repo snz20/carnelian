@@ -38,7 +38,18 @@ def reduceSeq(infile, outfile, alph):
                         if aa != '*' and aa != '-' and aa != 'U':
                                 if aa == 'X':
                                         aa = random.sample(set('ACDEFGHIKLMNPQRSTVWY'), 1)[0]
-                                n_p += Alphabet.Reduced.murphy_10_tab[aa]
+                                if alph == 'Murphy10':
+                                        n_p += Alphabet.Reduced.murphy_10_tab[aa]
+                                elif alph == 'Murphy15':
+                                        n_p += Alphabet.Reduced.murphy_15_tab[aa]
+                                elif alph == 'Murphy8':
+                                        n_p += Alphabet.Reduced.murphy_8_tab[aa]
+                                elif alph == 'Murphy4':
+                                        n_p += Alphabet.Reduced.murphy_4_tab[aa]
+                                elif alph == 'PC5':
+                                        n_p += Alphabet.Reduced.pc_5_table[aa]
+                                elif alph == 'HPModel':
+                                        n_p += Alphabet.Reduced.hp_model_tab[aa]
                         else:
                                 n_p += aa
                 x = SeqRecord(n_p)
