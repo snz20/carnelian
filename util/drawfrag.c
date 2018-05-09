@@ -266,7 +266,7 @@ main (int argc, char *argv[])
 					// write sub-seq into frag and flag non ATGC characters
 					frag = gdl_string_alloc(SIZE);
 					for(i = random_pos; i <= (random_pos + SIZE); i++){
-						switch(toupper(seq->seq.s[i])){
+						/*switch(toupper(seq->seq.s[i])){
 							case 'A' : break;
 							case 'T' : break;
 							case 'G' : break;
@@ -274,7 +274,7 @@ main (int argc, char *argv[])
 							default :
 								atgc_only = 0;
 								break;
-						}
+						}*/
 						frag[i-random_pos] = toupper(seq->seq.s[i]);
 					}
 					// check wether to include fragment or not depending on the non ATGC characters
