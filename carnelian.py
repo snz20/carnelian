@@ -968,7 +968,7 @@ def main(argv):
 	bits_arg = ArgClass('--bits', help='Number of bits used in VW model', type=int, default=31)
 	lambda1_arg = ArgClass('--lambda1', help='VW model lambda1 training parameter', type=float, default=0.)
 	lambda2_arg = ArgClass('--lambda2', help='VW model lambda2 training parameter', type=float, default=0.)
-	type_arg = ArgClass('--type', dest='type', default='nucleotide', help='Sequence type. "prot" if the reference fasta files are for amino acid sequences. "nucl" if nucleotide sequences. In the latter case the nucleotide sequences will be translated. (default:  %(default)s)')
+	#type_arg = ArgClass('--type', dest='type', default='nucleotide', help='Sequence type. "prot" if the reference fasta files are for amino acid sequences. "nucl" if nucleotide sequences. In the latter case the nucleotide sequences will be translated. (default:  %(default)s)')
 	cutoff_arg = ArgClass('--cutoff', help='Probability cutoff for VW predictions', type=float, default=0.)
 
 	# Subparsers
@@ -996,7 +996,7 @@ def main(argv):
 	parser_train.add_argument('--precise', help='If set, will train model to output probabilities', action='store_true')
 	parser_train.add_argument(*frag_length_arg.args, **frag_length_arg.kwargs)
 	parser_train.add_argument(*coverage_arg.args, **coverage_arg.kwargs)
-	parser_train.add_argument(*type_arg.args, **type_arg.kwargs)
+	#parser_train.add_argument(*type_arg.args, **type_arg.kwargs)
 	parser_train.add_argument(*kmer_arg.args, **kmer_arg.kwargs)
 	parser_train.add_argument(*num_batches_arg.args, **num_batches_arg.kwargs)
 	parser_train.add_argument(*num_passes_arg.args, **num_passes_arg.kwargs)
