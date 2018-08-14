@@ -30,7 +30,7 @@ R installation (version >= 3.3.2) to be available.
 
 # import required packages
 from __future__ import print_function
-__version__ = "1.0.0"
+__version__ = "0.6.0"
 
 import os
 from os import path, mkdir
