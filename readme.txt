@@ -18,6 +18,9 @@ Upon publication, further information can be found at http://carnelian.csail.mit
     
     Using the EC-2192-DB dataset as gold standard, Carnelian can be comfortably
     run on a machine with 16GB RAM.
+    
+    A docker container for Carnelian with all its dependencies is available. To start the 
+    container please run: $ docker run -ti snazeen/carnelian
 
 1. Directory structure
 data/: EC-2192-DB dataset with gold standard EC labels.
