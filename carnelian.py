@@ -987,7 +987,7 @@ def main(argv):
 	parser_frag.add_argument('frag_dir', help='Output directory for fasta fragments and corresponding labels')
 	parser_frag.add_argument(*frag_length_arg.args, **frag_length_arg.kwargs)
 	parser_frag.add_argument(*coverage_arg.args, **coverage_arg.kwargs)
-	parser_frag.add_argument(*type_arg.args, **type_arg.kwargs)
+	#parser_frag.add_argument(*type_arg.args, **type_arg.kwargs)
 
 	# Training Args
 	parser_train = subparsers.add_parser('train', help='Train a Vowpal Wabbit model using carnelian hash-based features', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
