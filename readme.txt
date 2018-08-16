@@ -124,6 +124,6 @@ Contact
 
 Acknowledgement
     This implementation of Carnelian is adapted from the source code of the following papers:
-    Yunan Luo, Y. William Yu, Jianyang Zeng, Bonnie Berger, and Jian Peng. Metagenomic binning through low density hashing. doi: https://doi.org/10.1101/133116
+    Yunan Luo, Y. William Yu, Jianyang Zeng, Bonnie Berger, and Jian Peng. Metagenomic binning through low density hashing.  Bioinformatics (2018), bty611, https://doi.org/10.1093/bioinformatics/bty611
     K. Vervier, P. Mahe, M. Tournoud, J.-B. Veyrieras, and J.-P. Vert. Large-scale Machine Learning for Metagenomics Sequence Classification , Technical report HAL-01151453, May, 2015.
     
