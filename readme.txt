@@ -114,6 +114,10 @@ Modes:
 
     Before running the script make sure the following packages are installed and out_dir exists:
         tools, limma, Glimma, edgeR, RColorBrewer, gplots, ggplot2, ggrepel
+    
+    To replicate our classification performance analysis the code in performance_analysis.R can be used. Before running
+    the script the following packages need to be installed: 
+        caret, pROC, ROCR, cvAUC, randomForest
 
 Contact
     Sumaiya Nazeen, nazeen@mit.edu
