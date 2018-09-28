@@ -1,5 +1,5 @@
 This code is associated with the following manuscript:
-"Carnelian: alignment-free functional binning and abundance estimation of metagenomic reads"
+"Carnelian uncovers hidden functional patterns across diverse study populations from whole metagenome sequencing reads"
 Sumaiya Nazeen and Bonnie Berger 
 
 Upon publication, further information can be found at http://carnelian.csail.mit.edu/
