@@ -1,0 +1,45 @@
+**************************************************************************
+* Workflow for functional profiling of metagenomic sample with Carnelian *
+**************************************************************************
+
+A. Training Carnelian with gold standard: (Needs to be done only once)
+	carnelian train -k 8 --num_hash <number-of-hash-functions-be-used> -l 30 -c 5 data/EC-2192-DB <model_dir>
+	Note: We recommend using 2 or 4 hash functions. Even with one hash function, the results are reasonably good.
+B. Functional profiling:
+
+B1. Preprocessing reads: (Needs to be done for every sample/individual. Other third-party tools can also be used for pre-processing.)
+	
+	Paired-end:
+	i) Quality filtering and adapter trimming: 
+	java -jar trimmomatic-0.36.jar PE <input_forward_fastq> <input_reverse_fastq> <output_paired_forward_fastq> <output_unpaired_forward_fastq> <output_paired_reverse_fastq> <output_unpaired_reverse_fastq> ILLUMINACLIP:adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:90
+	ii) Deconvolving:
+	perl deconseq.pl -f <output_paired_forward_fasta_from_trimming> -dbs hsref -i 90 -c 90 -out_dir <forward_dir>
+	perl deconseq.pl -f <output_paired_reverse_fasta_from_trimming> -dbs hsref -i 90 -c 90 -out_dir <reverse_dir>;
+	iii) Concatenate reads into a multi-fasta file:
+	cat <forward_dir/*_clean.fa> <reverse_dir/*_clean.fa> > <sample.fasta>
+	
+	Single-end:
+	i) Quality filtering and adapter trimming: 
+	java -jar trimmomatic-0.35.jar SE <input_fastq> <output_fastq> ILLUMINACLIP:adapters/TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:90
+	ii) Deconvolving:
+	perl deconseq.pl -f <output_fasta_from_trimming> -dbs hsref -i 90 -c 90 -out_dir <output_dir>
+	iii) Rename the clean fasta file:
+	mv <output_dir/*_clean.fa> <sample.fasta>
+	
+
+B2. Translating reads: (Needs to be done for every sample/individual and can be parallelized by running multiple instances of Carnelian. If amino-acid sequences are available, skip this step)
+	carnelian translate <sample.fasta> <out_sample_peptides.fasta> <path_to_transeq> -n <num_cpus_to_use>
+	grep '>' <out_sample_peptides.fasta> > <out_sample_peptides.label>;
+
+B3. Predicting functional labels:
+	carnelian predict -k 8 <path_to_trained_model> <path_to_directory_containing_out_sample_peptides.fasta> <path_to_sample_output_directory>
+
+C. Functional profiling and abundance analysis: (Needs to be performed once all the samples have been labeled.)
+
+C1. Functional profiling:
+	i) Move the label files from individual sample directories to one single directory <labels_dir>. The files should be named after the same sample identifiers that appear in the <sampleinfo_file> file. See the readme.txt file for the format of <sampleinfo_file>.
+	ii) Run the following command for creating the raw and effective counts matrices:
+	carnelian abundance <labels_dir> <abundance_matrix_dir> <sampleinfo_file> data/EC-2192-DB/ec_info.tsv;
+
+C2. Differential abundance analysis:
+	Rscript abundance_analysis.R <effective_counts_file> <sampleinfo_file> <ref_group> <adj_pval_cutoff> <logFC_cutoff> <out_dir>
