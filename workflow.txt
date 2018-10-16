@@ -5,7 +5,7 @@
 A. Training Carnelian with gold standard: (Needs to be done only once)
 	carnelian train -k 8 --num_hash <number-of-hash-functions-be-used> -l 30 -c 5 data/EC-2192-DB <model_dir>
 	Note: We recommend using 2 or 4 hash functions. Even with one hash function, the results are reasonably good.
-B. Functional profiling:
+B. Functional binning:
 
 B1. Preprocessing reads: (Needs to be done for every sample/individual. Other third-party tools can also be used for pre-processing.)
 	
@@ -27,7 +27,7 @@ B1. Preprocessing reads: (Needs to be done for every sample/individual. Other th
 	mv <output_dir/*_clean.fa> <sample.fasta>
 	
 
-B2. Translating reads: (Needs to be done for every sample/individual and can be parallelized by running multiple instances of Carnelian. If amino-acid sequences are available, skip this step)
+B2. Translating reads: (Needs to be done for every sample/individual and can be parallelized. If amino-acid sequences are available, skip this step)
 	carnelian translate <sample.fasta> <out_sample_peptides.fasta> <path_to_transeq> -n <num_cpus_to_use>
 	grep '>' <out_sample_peptides.fasta> > <out_sample_peptides.label>;
 
