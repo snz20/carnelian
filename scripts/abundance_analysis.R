@@ -5,7 +5,7 @@
 #' @param counts_file Path of a file containing a numeric matrix of effective counts of fragments assigned 
 #'					 per functional label per sample. Note that, any count matrix will do but, we advise 
 #'					 using effective counts for more relevant biological results.
-#' @param sampleinfo_file A tab-separated file with file with list with case-control labels of samples.
+#' @param sampleinfo_file A tab-separated file with file with list of sample ids and corresponding case-control labels of samples.
 #' @param reference_group A string containing the control group name
 #' @param p-value cutoff to be used for volcano plot
 #' @param log-fold-change cutoff to be used for volcano plot 
