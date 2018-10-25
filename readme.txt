@@ -114,7 +114,21 @@ Modes:
     To run abundance analysis on effective counts using limma, voom, and edgeR packages in R,
     use the following script abundance_analysis.R in scripts directory:
 
-    Rscript abundance_analysis.R effective_counts_file sampleinfo_file ref_group adj_pval_cutoff logFC_cutoff out_dir
+        Rscript abundance_analysis.R effective_counts_file sampleinfo_file ref_group adj_pval_cutoff logFC_cutoff out_dir
+    
+        Performs differential abundance analysis on a counts matrix for two-group (case vs controls) study. 
+        Parameters: 
+        1. effective_counts_file: Path of a file containing a numeric matrix of effective counts of fragments assigned 
+					              per functional label per sample. Note that, using raw count matrix will also do, but
+                                  biologically relevant results we advise using effective counts. 
+        2. sampleinfo_file: A tab-separated file with sample Ids in the first column, case-control labels for samples in 
+                            the second column, and nominal length of amino acid sequences per samples in the third column. 
+                            The top row contains the column names starting with the 2nd column. 
+        3. reference_group: A string containing the control group name
+        4. adj_pval_cutoff: cutoff to be used for volcano plot
+        5. logFC_cutoff: cutoff to be used for volcano plot 
+        6. out_dir: Path to a directory where analysis results will be stored. Assumes the directory already exists
+        Output: fold-change and pvalue estimates for the functional labels and volcano-plot for significant labels
 
     Before running the script make sure the following packages are installed and out_dir exists:
         tools, limma, Glimma, edgeR, RColorBrewer, gplots, ggplot2, ggrepel
