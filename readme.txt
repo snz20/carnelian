@@ -1,6 +1,7 @@
 This code is associated with the following manuscript:
-"Carnelian uncovers hidden functional patterns across diverse study populations from whole metagenome sequencing reads"
-Sumaiya Nazeen and Bonnie Berger 
+"Carnelian: alignment-free functional binning and abundance estimation of metagenomic reads"
+Sumaiya Nazeen, Bonnie Berger
+doi: https://doi.org/10.1101/375121
 
 Upon publication, further information can be found at http://carnelian.csail.mit.edu/
 
