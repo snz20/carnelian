@@ -280,7 +280,7 @@ def createAbundanceMatrix(predict_dir, aa_dir, gs_file):
 def translateOne(argument):
 	'''Subroutine for translating one sample on one cpu using transeq'''
 	#print("in translate one")
-	os.system('transeq -frame 6 ' + argument)
+	os.system('transeq -frame 6 -table 11 ' + argument)
 
 def translateSeqs(seq_dir, out_dir, transeq_loc, args):
 	'''
