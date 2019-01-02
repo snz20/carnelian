@@ -6,7 +6,7 @@ doi: https://doi.org/10.1101/375121
 Upon publication, further information can be found at http://carnelian.csail.mit.edu/
 
 0. Requirments
-    Vowpal Wabbit >= 8.3.0
+    Vowpal Wabbit 8.1.1
     scikit-learn
     R 3.3.2
     Python 2.7.13
