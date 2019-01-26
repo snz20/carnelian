@@ -17,15 +17,11 @@ Upon publication, further information can be found at http://carnelian.csail.mit
     under Bash 4.4.7(1) on a server with Intel Xeon E5-2695 v2 x86_64 2.40 GHz 
     processor and 320 GB RAM.
     
-    Using the EC-2192-DB dataset as gold standard, Carnelian can be comfortably
-    run on a machine with 16GB RAM.
-    
-    A docker container for Carnelian with all its dependencies is available. To start the 
-    container please run: $ docker run -ti snazeen/carnelian
-                          $ carnelian -h
+    Using the EC-2010-DB dataset as gold standard, Carnelian can be comfortably
+    run on a machine with 16GB RAM using 1 CPU.
 
 1. Directory structure
-data/: EC-2192-DB dataset with gold standard EC labels.
+data/: EC-2010-DB dataset with gold standard EC labels.
 scripts/: R scripts for abundance estimation and analysis from read counts in functional bins.
 util/
     ext/: external libararies.
@@ -33,8 +29,16 @@ util/
     drawfrag.c: draw fragments from fasta records.
     fasta2skm.c: construct feature (spaced k-mer profile), and convert to VW input format.
     ldpc.py: generate LSH function using LDPC code.
-    sequtil.py: split a large fasta file into smaller ones and merge after processing.
+    sequtil.py: splitting and merging utilities for fasta files.
+    merge_pairs.py: links paired-end read files using paired-end relationships.
+    reduce.py: translate sequences using reduced amino acid alphabets.
     kseq.h: parse FASTA files
+tests/
+    demo_data/: data files required for unit and advanced tests.
+    basictest_carnelian.py: contains the unit tests for Carnelian.
+    advancedtest_carnelian.py: contains the end-to-end tests for Carnelian.
+    config.py: configures unit tests and advanced tests for Carnelian.
+    README.txt: contains the instructions to run the tests.
     
 2. Install and test:
    bash SETUP.sh
@@ -43,7 +47,7 @@ util/
 
 Modes:
     (default --optional-arguments such as k-mer length, fragment size,
-    hash functions, etc. are set to work best with EC-2192-DB as used in the manuscript.
+    hash functions, etc. are set to work best with EC-2010-DB as used in the manuscript.
     If you're going to train on a different dataset, be sure to tune parameters.)
 
     1)  ./carnelian.py frag [--optional-arguments] test_dir frag_dir [-h]
@@ -73,8 +77,14 @@ Modes:
         LDPC patterns. Note that a model trained in default mode must be updated
         in default mode. Same is true for precise mode.
         Output model, dictionary, and pattern files will be generated in new_model_dir.
+	
+    4) ./carnelian.py translate [--optional-arguments] seq_dir out_dir fgsp_loc [-h]
+    	
+	Using FragGeneScan program located in the fgsp_loc directory, tries to find
+	coding sequences in the input reads fasta file in seq_dir, and translated the
+	coding sequences to possible ORFs outputting them in a fasta file in the out_dir.
 
-    4) ./carnelian.py predict [--optional-arguments] model_dir test_dir predict_dir [-h]
+    5) ./carnelian.py predict [--optional-arguments] model_dir test_dir predict_dir [-h]
 
         Looks for a classifier model in model_dir, and a fasta file in
         test_dir containing reads/fragments. To make predictions with probabilities,
@@ -84,13 +94,13 @@ Modes:
         Outputs the predictions in predict_dir as a fasta file with
         corresponding a corresponding label file.
 
-    5) ./carnelian.py eval reference_file predicted_labels [-h]
+    6) ./carnelian.py eval reference_file predicted_labels [-h]
     
         Evaluation of prediction accuracy in terms of micro and macro averaged
         precision, sensitivity, and F1-score. If run in "precise" mode, it will
         assume predicted_labels file to have two tab-separated columns: <readID, predLabel>
 
-    6) ./carnelian.py abundance in_dir out_dir mapping_file gs_file [-h]
+    7) ./carnelian.py abundance in_dir out_dir mapping_file gs_file [-h]
 
         Generates abundance estimates of functional terms. Looks for predicted labels for
         each sample in its own sub-directory in in_dir and sample mapping information
@@ -98,7 +108,7 @@ Modes:
 
         Outputs raw counts and effective counts matrices in out_dir.
 
-    7) ./carnelian.py simulate [--optional-arguments] test_dir train_dir out_dir [-h]
+    8) ./carnelian.py simulate [--optional-arguments] test_dir train_dir out_dir [-h]
 
         Runs a full pipeline for performance evaluation starting from training on data 
         in train_dir, testing on data in test_dir, and outputting fragments, model and 
@@ -112,27 +122,14 @@ Modes:
         3predict/
             fragment classifications are saved here.
 
-    To run abundance analysis on effective counts using limma, voom, and edgeR packages in R,
-    use the following script abundance_analysis.R in scripts directory:
-
-        Rscript abundance_analysis.R effective_counts_file sampleinfo_file ref_group adj_pval_cutoff logFC_cutoff out_dir
-    
-        Performs differential abundance analysis on a counts matrix for two-group (case vs controls) study. 
-        Parameters: 
-        1. effective_counts_file: Path of a file containing a numeric matrix of effective counts of fragments assigned 
-					              per functional label per sample. Note that, using raw count matrix will also do, but
-                                  biologically relevant results we advise using effective counts. 
-        2. sampleinfo_file: A tab-separated file with sample Ids in the first column, case-control labels for samples in 
-                            the second column, and nominal length of amino acid sequences per samples in the third column. 
-                            The top row contains the column names starting with the 2nd column. 
-        3. reference_group: A string containing the control group name
-        4. adj_pval_cutoff: cutoff to be used for volcano plot
-        5. logFC_cutoff: cutoff to be used for volcano plot 
-        6. out_dir: Path to a directory where analysis results will be stored. Assumes the directory already exists
-        Output: fold-change and pvalue estimates for the functional labels and volcano-plot for significant labels
-
-    Before running the script make sure the following packages are installed and out_dir exists:
-        tools, limma, Glimma, edgeR, RColorBrewer, gplots, ggplot2, ggrepel
+    9) ./carnelian.py annotate [--optional-arguments] sample_dir model_dir out_dir fgsp_loc [-h]
+	
+	Annotates the input nucleotide reads starting from gene finding and translation
+	on the reads fasta file in the sample_dir using FragGeneScan located in the fgsp_loc
+	directory, then classifying the predicted ORFs using the model in model_dir, and 
+	outputting the labels in the out_dir.
+	
+    Steps to be followed in a typical workflow is given in the workflow.txt file.
     
     To replicate our classification performance analysis the code in performance_analysis.R can be used. Before running
     the script the following packages need to be installed: 
