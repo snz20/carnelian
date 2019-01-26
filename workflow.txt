@@ -31,15 +31,15 @@ B2. Translating reads: (Needs to be done for every sample/individual and can be 
 	carnelian translate <sample.fasta> <out_sample_peptides.fasta> <path_to_transeq> -n <num_cpus_to_use>
 	grep '>' <out_sample_peptides.fasta> > <out_sample_peptides.label>;
 
-B3. Predicting functional labels:
-	carnelian predict -k 8 <path_to_trained_model> <path_to_directory_containing_out_sample_peptides.fasta> <path_to_sample_output_directory>
+B3. Annotating one sample:
+	carnelian annotate -k 8 -n <number_of_cpus> <path_to_directory_containing_input_fasta> <trained_model_directory> <path_to_sample_output_directory> <path_to_FragGeneScan>
+	
+Note on paired-end inputs:
+--------------------------
+If you have paired-end inputs, you can process either treat the reads individually. In that case, you need to convert the reads to fasta format and put them in a single file before running Carnelian on it. If you want to use the paired-end relationships, please use the merge_pairs.py script under utils folder to generate a merged fasta file. The script will construct a longer read if the forward and reverse reads (reverse complemented) have overlaps. If they don't overlap, the script will link them by filling the inner distance with 'N's. The inner distance can be specified by the user (default:50).
 
 C. Functional profiling and abundance analysis: (Needs to be performed once all the samples have been labeled.)
-
-C1. Functional profiling:
 	i) Move the label files from individual sample directories to one single directory <labels_dir>. The files should be named after the same sample identifiers that appear in the <sampleinfo_file> file. See the readme.txt file for the format of <sampleinfo_file>.
 	ii) Run the following command for creating the raw and effective counts matrices:
 	carnelian abundance <labels_dir> <abundance_matrix_dir> <sampleinfo_file> data/EC-2192-DB/ec_info.tsv;
 
-C2. Differential abundance analysis:
-	Rscript abundance_analysis.R <effective_counts_file> <sampleinfo_file> <ref_group> <adj_pval_cutoff> <logFC_cutoff> <out_dir>
