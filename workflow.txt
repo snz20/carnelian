@@ -26,12 +26,7 @@ B1. Preprocessing reads: (Needs to be done for every sample/individual. Other th
 	iii) Rename the clean fasta file:
 	mv <output_dir/*_clean.fa> <sample.fasta>
 	
-
-B2. Translating reads: (Needs to be done for every sample/individual and can be parallelized. If amino-acid sequences are available, skip this step)
-	carnelian translate <sample.fasta> <out_sample_peptides.fasta> <path_to_transeq> -n <num_cpus_to_use>
-	grep '>' <out_sample_peptides.fasta> > <out_sample_peptides.label>;
-
-B3. Annotating one sample:
+B2. Annotating one sample:
 	carnelian annotate -k 8 -n <number_of_cpus> <path_to_directory_containing_input_fasta> <trained_model_directory> <path_to_sample_output_directory> <path_to_FragGeneScan>
 	
 Note on paired-end inputs:
