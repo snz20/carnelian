@@ -51,7 +51,7 @@ from carnelian import frag
 from carnelian import translateSeqs
 from carnelian import train
 from carnelian import retrain
-from parcarn import predict
+from carnelian import predict
 from carnelian import calcAbundance
 
 import ldpc
