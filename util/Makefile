@@ -15,7 +15,6 @@ drawfrag : drawfrag.o
 fasta2vw : fasta2vw.o
 	$(CC) -o $@ fasta2vw.o -lz -L${GDLDIR}/lib -lgdl -lm -static -fPIC
 
-
 fasta2skm : fasta2skm.o
 	$(CC) -o $@ fasta2skm.o -lz -L${GDLDIR}/lib -lgdl -lm -static -fPIC
 
