@@ -26,7 +26,7 @@ fastaSplit: fastaSplit.o
 	$(CC) -o $@ fastaSplit.o
 
 fileMerge: fileMerge.o
-        $(CC) -o $@ fileMerge.o
+	$(CC) -o $@ fileMerge.o
 
 clean :
 	rm $(OBJS) drawfrag fasta2vw fasta2skm fasta2sklearn fastaSplit fileMerge
