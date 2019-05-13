@@ -2,9 +2,9 @@ GDLDIR=ext/gdl-1.1/GDL
 
 CC=gcc
 CFLAGS= -O2 -Wall -Wshadow -I./ -I${GDLDIR}/include -c
-OBJS = drawfrag.o fasta2vw.o fasta2skm.o fasta2sklearn.o
+OBJS = drawfrag.o fasta2vw.o fasta2skm.o fasta2sklearn.o fastaSplit.o fileMerge.o
 
-all: drawfrag fasta2vw fasta2skm fasta2sklearn
+all: drawfrag fasta2vw fasta2skm fasta2sklearn fastaSplit fileMerge
 
 .c.o :
 	$(CC) $(CFLAGS) -fPIC $<
@@ -22,6 +22,11 @@ fasta2skm : fasta2skm.o
 fasta2sklearn: fasta2sklearn.o
 	$(CC) -o $@ fasta2sklearn.o -lz -L${GDLDIR}/lib -lgdl -lm -static -fPIC
 
-clean :
-	rm $(OBJS) drawfrag fasta2vw fasta2skm fasta2sklearn
+fastaSplit: fastaSplit.o
+	$(CC) -o $@ fastaSplit.o
 
+fileMerge: fileMerge.o
+        $(CC) -o $@ fileMerge.o
+
+clean :
+	rm $(OBJS) drawfrag fasta2vw fasta2skm fasta2sklearn fastaSplit fileMerge
