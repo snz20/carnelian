@@ -144,7 +144,7 @@ class TestCarnelian_Basic(unittest.TestCase):
         safe_makedirs(os.path.join(config.data_dir,'tmp'))
         outpath = os.path.join(config.data_dir,'tmp')
         ncpus = 5
-        sequtil.split_fasta(config.small_fasta_file,outpath,ncpus)
+        sequtil.split_fasta2(config.small_fasta_file,outpath,ncpus,my_env)
         fasta_filelist = [os.path.join(outpath,os.path.basename(x)) for x in glob.glob(os.path.join(outpath,'*.fasta'))]
         ref_filelist = [os.path.join(config.splits_dir,os.path.basename(x)) for x in glob.glob(os.path.join(config.splits_dir,'*.fasta'))]
 	ind = [int(os.path.basename(f).split('.')[0]) for f in fasta_filelist]
@@ -165,7 +165,7 @@ class TestCarnelian_Basic(unittest.TestCase):
         ind = [int(os.path.basename(f).split('.')[0]) for f in filelist]
         sorted_ind = np.argsort(ind)
         flist = [filelist[i] for i in sorted_ind]
-        sequtil.merge_fasta(flist,outpath,'merged')
+        sequtil.merge_files2(flist,outpath,'merged.peptides.fasta','fasta',my_env)
         outfile = os.path.join(outpath,'merged.peptides.fasta')
         self.assertTrue(filecmp.cmp(outfile,config.small_fasta_file))
         shutil.rmtree(outpath)
@@ -230,6 +230,7 @@ class TestCarnelian_Basic(unittest.TestCase):
 	args.precise=False
 	print(args.ncpus)
         label_file = predict(config.model_dir, config.ftest_dir, config.predict_dir, args)
+	print(label_file)
         self.assertTrue(not(label_file is None))
 
     def test21_predict_precise(self):
@@ -238,7 +239,7 @@ class TestCarnelian_Basic(unittest.TestCase):
 	args.cutoff = 0.80
         label_file = predict(config.model_precise_dir, config.ftest_dir, config.predict_precise_dir, args)
 	self.assertTrue(not(label_file is None))
-	with open(label_file) as f:
+	with open(label_file.strip()) as f:
             first_line = f.readline()
             x = first_line.split('\t')
             self.assertEqual(len(x),2)

@@ -75,7 +75,7 @@ class TestCarnelian_Advanced(unittest.TestCase):
 		model_dir = config.model_dir
 		tmp_trans_dir = os.path.join(config.ttest_dir, 'translated')
 		tmp_pred_dir = os.path.join(config.ttest_dir, 'pred')
-		tmp_resolve_dir = os.path.join(config.ttest_dir, 'resolved')
+		#tmp_resolve_dir = os.path.join(config.ttest_dir, 'resolved')
 
 		a = translateSeqs(input_dir, tmp_trans_dir, fgsp_loc, args)
 		self.assertEqual(a,0)
@@ -84,17 +84,17 @@ class TestCarnelian_Advanced(unittest.TestCase):
                 self.assertTrue(os.stat(pep_file).st_size > 0)
 
 		orf_label_file = predict(model_dir, tmp_trans_dir, tmp_pred_dir, args)
-		self.assertTrue(os.path.isfile(orf_label_file))
+		self.assertTrue(os.path.isfile(orf_label_file.strip()))
 		self.assertTrue(os.stat(orf_label_file).st_size > 0)
 
-		resolve_label(tmp_resolve_dir, pep_file, orf_label_file, args)
-		read_label_file = os.path.join(tmp_resolve_dir, "reads.label")
-		self.assertTrue(os.path.isfile(read_label_file))
-		self.assertTrue(os.stat(orf_label_file).st_size > 0)
+		#resolve_label(tmp_resolve_dir, pep_file, orf_label_file, args)
+		#read_label_file = os.path.join(tmp_resolve_dir, "reads.label")
+		#self.assertTrue(os.path.isfile(read_label_file))
+		#self.assertTrue(os.stat(orf_label_file).st_size > 0)
 
 		shutil.rmtree(tmp_trans_dir)
 		shutil.rmtree(tmp_pred_dir)
-		shutil.rmtree(tmp_resolve_dir)
+		#shutil.rmtree(tmp_resolve_dir)
 
 	def test1_carnelian_end_to_end(self):
                 '''
@@ -126,14 +126,14 @@ class TestCarnelian_Advanced(unittest.TestCase):
 		# prediction for each samples
 		trans_dir = os.path.join(out_dir, 'translated')
 		pred_dir = os.path.join(out_dir, 'predicted')
-		resolve_dir = os.path.join(out_dir, 'resolved')
+		#resolve_dir = os.path.join(out_dir, 'resolved')
 
 		for sample in list_of_samples:
 			input_dir = sample
 			print(input_dir)
                 	tmp_trans_dir = os.path.join(trans_dir,os.path.basename(sample))
                 	tmp_pred_dir = os.path.join(pred_dir,os.path.basename(sample))
-                	tmp_resolve_dir = os.path.join(resolve_dir,os.path.basename(sample))
+                	#tmp_resolve_dir = os.path.join(resolve_dir,os.path.basename(sample))
 
                 	a = translateSeqs(input_dir, tmp_trans_dir, fgsp_loc, args)
                 	self.assertEqual(a,0)
@@ -143,16 +143,16 @@ class TestCarnelian_Advanced(unittest.TestCase):
                 	self.assertTrue(os.stat(pep_file).st_size > 0)
 
                 	orf_label_file = predict(model_dir, tmp_trans_dir, tmp_pred_dir, args)
-                	self.assertTrue(os.path.isfile(orf_label_file))
+                	self.assertTrue(os.path.isfile(orf_label_file.strip()))
                 	self.assertTrue(os.stat(orf_label_file).st_size > 0)
 
-                	resolve_label(tmp_resolve_dir, pep_file, orf_label_file, args)
-                	read_label_file = os.path.join(tmp_resolve_dir, "reads.label")
-                	self.assertTrue(os.path.isfile(read_label_file))
-                	self.assertTrue(os.stat(orf_label_file).st_size > 0)
+                	#resolve_label(tmp_resolve_dir, pep_file, orf_label_file, args)
+                	#read_label_file = os.path.join(tmp_resolve_dir, "reads.label")
+                	#self.assertTrue(os.path.isfile(read_label_file))
+                	#self.assertTrue(os.stat(orf_label_file).st_size > 0)
 
 		aa_dir = os.path.join(out_dir,'abundance')
-		calcAbundance(resolve_dir, aa_dir, config.map_file, config.dummy_gs_file)
+		calcAbundance(pred_dir, aa_dir, config.map_file, config.dummy_gs_file)
 		expected_filelist = ['raw_counts.tsv','effective_counts.tsv']
 		out = os.popen('ls '+aa_dir).read()
 		aa_filelist = out.split()
@@ -179,8 +179,5 @@ if __name__ == '__main__':
     	parser.add_argument('--cutoff', default=0., type=float)
     	parser.add_argument('unittest_args', nargs='*')
     	args = parser.parse_args()
-    	#fgsp_loc = os.path.abspath(args.fgsp_loc)
-    	#if fgsp_loc.endswith('FGS+'):
-        #	fgsp_loc = os.path.dirname(fgsp_loc)
     	sys.argv[1:] = args.unittest_args
     	unittest.main()
