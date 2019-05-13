@@ -28,7 +28,7 @@ R installation (version >= 3.3.2) to be available.
 
 # import required packages
 from __future__ import print_function
-__version__ = "1.1.0"
+__version__ = "1.0.0"
 
 import os
 from os import path, mkdir
@@ -916,8 +916,9 @@ Fasta input:    {fasta}
                 tmp_path = os.path.join(predict_dir, 'tmp')
                 safe_makedirs(tmp_path)
                 infastapath = os.path.join(test_dir, fasta)
-                splits = sequtil.split_fasta(infastapath, tmp_path, ncpus)
-                print(splits)
+                splits = sequtil.split_fasta2(infastapath, tmp_path, ncpus, my_env)
+                #splits = sequtil.split_fasta(infastapath, tmp_path, ncpus)
+		print(splits)
                 test_dirlist = [os.path.dirname(x) for x in glob.glob(os.path.join(tmp_path,'*/*.fasta'))]
                 pred_dirlist = [os.path.join(f,'predict') for f in test_dirlist]
                 arglist=[model_dir+'|'+test_dirlist[i]+'|'+pred_dirlist[i]+'|'+str(kmer) for i in range(ncpus)]
@@ -926,11 +927,11 @@ Fasta input:    {fasta}
                 p.map(predict_unpack, arglist)
                 filelist = [glob.glob(os.path.join(d,'*.label'))[0] for d in pred_dirlist]
                 #print(filelist)
-                prefix = sequtil.merge_files(filelist,predict_dir,fasta,'.label')
-		vw_prefix = sequtil.merge_files(filelist,predict_dir,fasta,'.vw')
+                prefix = sequtil.merge_files2(filelist,predict_dir,fasta,'label', my_env)
+		vw_prefix = sequtil.merge_files2(filelist,predict_dir,fasta,'vw', my_env)
 		if args.precise:
 			filelist = [glob.glob(os.path.join(d,'*.tsv'))[0] for d in pred_dirlist]
-			prob_file = sequtil.merge_files(filelist,predict_dir,fasta,'.tsv')
+			prob_file = sequtil.merge_files2(filelist,predict_dir,fasta,'tsv',my_env)
                 shutil.rmtree(tmp_path, ignore_errors=True)
         else:
                 prefix = predictOne(model_dir, test_dir, predict_dir, kmer, args.precise, cutoff)
@@ -952,7 +953,7 @@ Total wall clock runtime (sec): {s}
         pl=prefix,
         s=(datetime.now() - starttime).total_seconds()))
         sys.stdout.flush()
-        return (prefix)
+        return (prefix.strip())
 
 def predict_unpack(args):
         s = args.split('|')
