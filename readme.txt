@@ -142,5 +142,3 @@ Acknowledgement
     Yunan Luo, Y. William Yu, Jianyang Zeng, Bonnie Berger, and Jian Peng. Metagenomic binning through low density hashing.  Bioinformatics (2018), bty611, https://doi.org/10.1093/bioinformatics/bty611
     K. Vervier, P. Mahe, M. Tournoud, J.-B. Veyrieras, and J.-P. Vert. Large-scale Machine Learning for Metagenomics Sequence Classification , Technical report HAL-01151453, May, 2015.
     
-Note
-- Utilize the --bits parameter in the ``train'' mode, if you are running on a laptop or small memory desktop machine. The model performance significantly reduces for smaller values of the --bits parameter because there will be increasingly more collissions in the feature hash table of vowpal-wabbit. For best performance, we recommend running the code with default value of --bits on a server with high memory.
