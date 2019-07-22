@@ -105,7 +105,8 @@ Modes:
 
         Generates abundance estimates of functional terms. Looks for predicted labels for
         each sample in its own sub-directory in in_dir and sample mapping information
-        and average protein length per label in mapping_file and gs_file respectively.
+        and average protein length per label in mapping_file and gs_file respectively. Please
+	note that, the sample ids must not start with digits. 
 
         Outputs raw counts and effective counts matrices in out_dir.
 
