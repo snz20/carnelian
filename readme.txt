@@ -1,6 +1,6 @@
-This code is associated with the following manuscript:
+This code is associated with the following manuscript. If you use any part of the source code, please cite us:
 Sumaiya Nazeen, Yun William Yu, and Bonnie Berger*. 
-"Carnelian uncovers hidden functional patterns across diverse study populations from whole metagenome sequencing reads." (Submitted for publication). 
+"Carnelian uncovers hidden functional patterns across diverse study populations from whole metagenome sequencing reads." (Accepted for publication in Genome Biology). 
 
 A preliminary version of the paper was presented at ECCB 2018 (Applications Track) and bioRxiv preprint can be found at https://doi.org/10.1101/375121
 
