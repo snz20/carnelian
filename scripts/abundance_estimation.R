@@ -61,12 +61,12 @@ if (length(args)<4) {
 	, call.=FALSE)
 } else {
 	counts_file <- args[1]
-	countdata <- read.table(counts_file,sep='\t',header=T,row.names=1)
+	countdata <- read.table(counts_file,sep='\t',header=T, check.names = FALSE, row.names=1)
 	countdata <- as.matrix(countdata)
 
 	gsfile <- args[2]
 	gsinfo <- read.table(gsfile,sep='\t',header=T,row.names=1)
-	names(gsinfo) = "genelen"	
+	names(gsinfo) = "genelen"
 
 	samplefile <- args[3]
 	sampleinfo <- read.table(samplefile,sep='\t',header=T,row.names=1)
