@@ -38,7 +38,9 @@ read if the forward and reverse reads (reverse complemented) have overlaps. If t
 filling the inner distance with 'N's. The inner distance can be specified by the user (default:50).
 
 C. Functional profiling and abundance analysis: (Needs to be performed once all the samples have been labeled.)
-	i) Move the label files from individual sample directories to one single directory <labels_dir>. The files should be named after the same sample identifiers that appear in the <sampleinfo_file> file. See the readme.txt file for the format of <sampleinfo_file>.
+	i) Move the label files from individual sample directories to one single directory <labels_dir>. The files should be named after the same sample identifiers that appear in the <sampleinfo_file> file. 
 	ii) Run the following command for creating the raw and effective counts matrices:
 	carnelian abundance <labels_dir> <abundance_matrix_dir> <sampleinfo_file> data/EC-2192-DB/ec_info.tsv;
+
+Note: The sampleinfo_file is a tab-separated file with three columns: sample_id, group, fraglen. sample_id column will contain the unique sample identifiers, group will indicate the classes the samples belong to. For example, if it is a case-control study, this column will contain case/control, or if it is a population study, it could contain the ancestry of the samples. The fraglen column will contain the average read length of sequences in amino acids for each sample (say the sequences have an average length of 120 bp, then the entry for it will be 40). 
 
